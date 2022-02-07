@@ -7,13 +7,24 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 33% 33% 33%;
+      grid-gap: 10px;
+    }
+  </style>
 </head>
 <body>
   <main id="app">
     <section class="section">
-      <center v-for="job in jobList" >
-        <button class="button" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'>{{job.name}}</button>
-      </center>
+      <div class="grid-container">
+        <center v-for="job in jobList">
+          <div class="dflex">
+            <button class="button" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'><img :src='job.name+".png"' /></button><p>{{job.name}}</p>
+          </div>
+        </center>
+      </div>
     </section>
   </main>
   <script>
@@ -37,4 +48,20 @@
           }
         });
   </script>
+  <style>
+    button {
+      min-width: 100%;
+      min-height: 24vw
+    }
+
+    .dflex {
+      display: flex;
+      flex-direction: column
+    }
+
+    img {
+      max-width: 100%;
+      max-height:100%;
+    }
+  </style>
 </body>
