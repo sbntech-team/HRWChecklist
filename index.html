@@ -19,16 +19,18 @@
   <main id="app">
     <center><h1 style="font-size:2em">HIGH RISK WORKS CHECKLIST</h1></center>
     <section class="section">
-      <center><button class="button" style="background-color:yellow;margin-bottom:5px"  onclick="window.location.href='https://docs.google.com/document/d/1n2SO91tlN5Jq67LaNMyJ7U9uJ-iQ-fjK9MPYrSt32qA/edit'">Need Help?</button></center>
-      <div class="grid-container">
-        <center v-for="job in jobList">
-          <div class="dflex">
-            <button class="button aimgbutton" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'><img :src='job.name+" 2.png"' /></button><p>{{job.name}}</p>
-          </div>
-        </center>
+    <form method="get" action="SBN High Risk Work Checklist User Guide.docx">
+      <center><button class="button" style="background-color:yellow;margin-bottom:5px" onclick="window.location.href='https://docs.google.com/document/d/1n2SO91tlN5Jq67LaNMyJ7U9uJ-iQ-fjK9MPYrSt32qA/edit'">Need Help?</button></center>
+    </form>
+  <div class="grid-container">
+    <center v-for="job in jobList">
+      <div class="dflex">
+        <button class="button aimgbutton" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'><img :src='job.name+" 2.png"' /></button><p>{{job.name}}</p>
       </div>
-      
-    </section>
+    </center>
+  </div>
+
+</section>
   </main>
   <script>
       const v = new Vue({
