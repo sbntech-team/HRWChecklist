@@ -22,10 +22,11 @@
       <div class="grid-container">
         <center v-for="job in jobList">
           <div class="dflex">
-            <button class="button" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'><img :src='job.name+" 2.png"' /></button><p>{{job.name}}</p>
+            <button class="button aimgbutton" :onclick='"window.location.href=&apos;"+job.form+"&apos;"'><img :src='job.name+" 2.png"' /></button><p>{{job.name}}</p>
           </div>
         </center>
       </div>
+      <center><button class="button" onclick="window.location.href='https://docs.google.com/document/d/1n2SO91tlN5Jq67LaNMyJ7U9uJ-iQ-fjK9MPYrSt32qA/edit'">Need Help?</button></center>
     </section>
   </main>
   <script>
@@ -50,7 +51,7 @@
         });
   </script>
   <style>
-    button {
+    .aimgbutton {
       min-width: 100%;
       min-height: 24vw
     }
