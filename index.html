@@ -18,14 +18,23 @@
 <body>
   <main id="app">
     <center>
-      <img src="SBN Lgo png.png" alt="SBN Logo" style="height:33vh;width:33vh"/>
+      <img src="HQ_Supply_logo.png" alt="SBN Logo" style="height:35vh;width:30vh" />
       <h1 style="font-size:2em">Digital Inspection Checklist for High-risk Works</h1>
       <h2>Brought to you by Supply Base North</h2>
+      <form method="get" action="SBN High Risk Work Checklist User Guide.docx">
+        <center><button class="button" style="background-color:yellow;margin-bottom:5px" onclick="window.location.href='https://docs.google.com/document/d/1n2SO91tlN5Jq67LaNMyJ7U9uJ-iQ-fjK9MPYrSt32qA/edit'">Read this before commencing</button></center>
+      </form>
     </center>
     <section class="section">
-    <form method="get" action="SBN High Risk Work Checklist User Guide.docx">
-      <center><button class="button" style="background-color:yellow;margin-bottom:5px" onclick="window.location.href='https://docs.google.com/document/d/1n2SO91tlN5Jq67LaNMyJ7U9uJ-iQ-fjK9MPYrSt32qA/edit'">Read this before commencing</button></center>
-    </form>
+      <center class="myselect">
+        <select class="select" v-model="selectedBase">
+          <option value=-1 >Select Base...</option>
+          <option value=0>Supply Base Central</option>
+          <option value=1>Supply Base East</option>
+          <option value=2>Supply Base North</option>
+          <option value=3>Supply Base West</option>
+        </select>
+      </center>
   <div class="grid-container">
     <center v-for="job in jobList">
       <div class="dflex">
@@ -41,26 +50,71 @@
         el: "#app",
         data() {
           return {
-            jobList: [
-              { name: "Compressed Air Gas Systems",     form: "https://docs.google.com/forms/d/e/1FAIpQLSfO9QfvR8ulYM0bojSt1kpXofRj4vXoDVowqOcuxPmW2GM7MQ/viewform?usp=sf_link" },
-              { name: "Work Involving Confined Spaces", form: "https://docs.google.com/forms/d/e/1FAIpQLSfC4N4srLU8NyVntC7rassM1oOajO8jJkGNgPVBZJrIo8qtiw/viewform?usp=sf_link" },
-              { name: "Electrical Works",               form: "https://docs.google.com/forms/d/e/1FAIpQLSdTXNKJHVG56-A9DbGNyRzk7NttwRtXME-XmMA69XJog3dHTw/viewform?usp=sf_link" },
-              { name: "Excavator Operations",           form: "https://docs.google.com/forms/d/e/1FAIpQLSdhC8sEEiaNKIgK53Ik3hAfK4hMLlGZ5EZG_E4WBwLMwieqcw/viewform?usp=sf_link" },
-              { name: "Hot Works",                      form: "https://docs.google.com/forms/d/e/1FAIpQLSf_WqRe1p6ZTUM2swRyqdIaKVU98KpP4gFSAKS7HPT44zZsMA/viewform?usp=sf_link" },
-              { name: "Lorry Crane Operations",         form: "https://docs.google.com/forms/d/e/1FAIpQLScl2iQnj2eiS4qcQZJ9sURFkbgNp8uDuNw1KhO2D0eI3uuXfA/viewform?usp=sf_link" },
-              { name: "MEWP Operations",                form: "https://docs.google.com/forms/d/e/1FAIpQLSdb2J7ihJaUTicnSew_IYlW2bnLiyJVVtKLavZQ6cMVs1FxGg/viewform?usp=sf_link" },
-              { name: "Mobile Crane Operations",        form: "https://docs.google.com/forms/d/e/1FAIpQLSdgKgAznThVhTjS-76rofVSxc2m-wCAw1qLlnUmKT2_W5myFw/viewform?usp=sf_link" },
-              { name: "Rooftop Works",                  form: "https://docs.google.com/forms/d/e/1FAIpQLSebnnL3-ZAkyM5sxYyE4ZbYfB6Nfg1mGZQzi52QJT8kCF6okg/viewform?usp=sf_link" },
-              { name: "Scaffolding Works",              form: "https://docs.google.com/forms/d/e/1FAIpQLScZaSiqdigC4hKltbsNhak1G6oa4_AbllqRIl1-UDxS6cemIA/viewform?usp=sf_link" },
-              ]
+            jobLists: [
+              [ //Central
+                { name: "Compressed Air Gas Systems", form: "https://docs.google.com/forms/d/e/1FAIpQLSfO9QfvR8ulYM0bojSt1kpXofRj4vXoDVowqOcuxPmW2GM7MQ/viewform?usp=sf_link" },
+                { name: "Work Involving Confined Spaces", form: "https://docs.google.com/forms/d/e/1FAIpQLSfC4N4srLU8NyVntC7rassM1oOajO8jJkGNgPVBZJrIo8qtiw/viewform?usp=sf_link" },
+                { name: "Electrical Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSdTXNKJHVG56-A9DbGNyRzk7NttwRtXME-XmMA69XJog3dHTw/viewform?usp=sf_link" },
+                { name: "Excavator Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdhC8sEEiaNKIgK53Ik3hAfK4hMLlGZ5EZG_E4WBwLMwieqcw/viewform?usp=sf_link" },
+                { name: "Hot Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSf_WqRe1p6ZTUM2swRyqdIaKVU98KpP4gFSAKS7HPT44zZsMA/viewform?usp=sf_link" },
+                { name: "Lorry Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLScl2iQnj2eiS4qcQZJ9sURFkbgNp8uDuNw1KhO2D0eI3uuXfA/viewform?usp=sf_link" },
+                { name: "MEWP Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdb2J7ihJaUTicnSew_IYlW2bnLiyJVVtKLavZQ6cMVs1FxGg/viewform?usp=sf_link" },
+                { name: "Mobile Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdgKgAznThVhTjS-76rofVSxc2m-wCAw1qLlnUmKT2_W5myFw/viewform?usp=sf_link" },
+                { name: "Rooftop Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSebnnL3-ZAkyM5sxYyE4ZbYfB6Nfg1mGZQzi52QJT8kCF6okg/viewform?usp=sf_link" },
+                { name: "Scaffolding Works", form: "https://docs.google.com/forms/d/e/1FAIpQLScNUCvLa0j7uocuQ4CgRTyTSY7Nu7cZaJxDMMVlD8Iu1jKiWg/viewform?usp=sf_link" },
+              ], [ //East
+                { name: "Compressed Air Gas Systems", form: "https://docs.google.com/forms/d/e/1FAIpQLSfO9QfvR8ulYM0bojSt1kpXofRj4vXoDVowqOcuxPmW2GM7MQ/viewform?usp=sf_link" },
+                { name: "Work Involving Confined Spaces", form: "https://docs.google.com/forms/d/e/1FAIpQLSfC4N4srLU8NyVntC7rassM1oOajO8jJkGNgPVBZJrIo8qtiw/viewform?usp=sf_link" },
+                { name: "Electrical Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSdTXNKJHVG56-A9DbGNyRzk7NttwRtXME-XmMA69XJog3dHTw/viewform?usp=sf_link" },
+                { name: "Excavator Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdhC8sEEiaNKIgK53Ik3hAfK4hMLlGZ5EZG_E4WBwLMwieqcw/viewform?usp=sf_link" },
+                { name: "Hot Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSf_WqRe1p6ZTUM2swRyqdIaKVU98KpP4gFSAKS7HPT44zZsMA/viewform?usp=sf_link" },
+                { name: "Lorry Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLScl2iQnj2eiS4qcQZJ9sURFkbgNp8uDuNw1KhO2D0eI3uuXfA/viewform?usp=sf_link" },
+                { name: "MEWP Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdb2J7ihJaUTicnSew_IYlW2bnLiyJVVtKLavZQ6cMVs1FxGg/viewform?usp=sf_link" },
+                { name: "Mobile Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdgKgAznThVhTjS-76rofVSxc2m-wCAw1qLlnUmKT2_W5myFw/viewform?usp=sf_link" },
+                { name: "Rooftop Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSebnnL3-ZAkyM5sxYyE4ZbYfB6Nfg1mGZQzi52QJT8kCF6okg/viewform?usp=sf_link" },
+                { name: "Scaffolding Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSc-B8Gq65fsGs9qZ0Nf6k0cMXRmUtmb21L15riw5VotRCrENw/viewform?usp=sf_link" },
+              ], [ //North
+                { name: "Compressed Air Gas Systems", form: "https://docs.google.com/forms/d/e/1FAIpQLSfO9QfvR8ulYM0bojSt1kpXofRj4vXoDVowqOcuxPmW2GM7MQ/viewform?usp=sf_link" },
+                { name: "Work Involving Confined Spaces", form: "https://docs.google.com/forms/d/e/1FAIpQLSfC4N4srLU8NyVntC7rassM1oOajO8jJkGNgPVBZJrIo8qtiw/viewform?usp=sf_link" },
+                { name: "Electrical Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSdTXNKJHVG56-A9DbGNyRzk7NttwRtXME-XmMA69XJog3dHTw/viewform?usp=sf_link" },
+                { name: "Excavator Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdhC8sEEiaNKIgK53Ik3hAfK4hMLlGZ5EZG_E4WBwLMwieqcw/viewform?usp=sf_link" },
+                { name: "Hot Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSf_WqRe1p6ZTUM2swRyqdIaKVU98KpP4gFSAKS7HPT44zZsMA/viewform?usp=sf_link" },
+                { name: "Lorry Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLScl2iQnj2eiS4qcQZJ9sURFkbgNp8uDuNw1KhO2D0eI3uuXfA/viewform?usp=sf_link" },
+                { name: "MEWP Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdb2J7ihJaUTicnSew_IYlW2bnLiyJVVtKLavZQ6cMVs1FxGg/viewform?usp=sf_link" },
+                { name: "Mobile Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdgKgAznThVhTjS-76rofVSxc2m-wCAw1qLlnUmKT2_W5myFw/viewform?usp=sf_link" },
+                { name: "Rooftop Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSebnnL3-ZAkyM5sxYyE4ZbYfB6Nfg1mGZQzi52QJT8kCF6okg/viewform?usp=sf_link" },
+                { name: "Scaffolding Works", form: "https://docs.google.com/forms/d/e/1FAIpQLScZaSiqdigC4hKltbsNhak1G6oa4_AbllqRIl1-UDxS6cemIA/viewform?usp=sf_link" },
+              ], [ //West
+                { name: "Compressed Air Gas Systems", form: "https://docs.google.com/forms/d/e/1FAIpQLSfO9QfvR8ulYM0bojSt1kpXofRj4vXoDVowqOcuxPmW2GM7MQ/viewform?usp=sf_link" },
+                { name: "Work Involving Confined Spaces", form: "https://docs.google.com/forms/d/e/1FAIpQLSfC4N4srLU8NyVntC7rassM1oOajO8jJkGNgPVBZJrIo8qtiw/viewform?usp=sf_link" },
+                { name: "Electrical Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSdTXNKJHVG56-A9DbGNyRzk7NttwRtXME-XmMA69XJog3dHTw/viewform?usp=sf_link" },
+                { name: "Excavator Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdhC8sEEiaNKIgK53Ik3hAfK4hMLlGZ5EZG_E4WBwLMwieqcw/viewform?usp=sf_link" },
+                { name: "Hot Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSf_WqRe1p6ZTUM2swRyqdIaKVU98KpP4gFSAKS7HPT44zZsMA/viewform?usp=sf_link" },
+                { name: "Lorry Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLScl2iQnj2eiS4qcQZJ9sURFkbgNp8uDuNw1KhO2D0eI3uuXfA/viewform?usp=sf_link" },
+                { name: "MEWP Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdb2J7ihJaUTicnSew_IYlW2bnLiyJVVtKLavZQ6cMVs1FxGg/viewform?usp=sf_link" },
+                { name: "Mobile Crane Operations", form: "https://docs.google.com/forms/d/e/1FAIpQLSdgKgAznThVhTjS-76rofVSxc2m-wCAw1qLlnUmKT2_W5myFw/viewform?usp=sf_link" },
+                { name: "Rooftop Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSebnnL3-ZAkyM5sxYyE4ZbYfB6Nfg1mGZQzi52QJT8kCF6okg/viewform?usp=sf_link" },
+                { name: "Scaffolding Works", form: "https://docs.google.com/forms/d/e/1FAIpQLSef3FmjH0wTxPSL_bf3Aukex6cQIXm1j5v25vCCuS2DNMWfaQ/viewform?usp=sf_link" },
+              ]],
+            selectedBase: -1
             }
+          },
+        computed: {
+          jobList() {
+            if(this.selectedBase == -1) return [];
+            return this.jobLists[this.selectedBase];
           }
+        }
         });
   </script>
   <style>
     .aimgbutton {
       min-width: 100%;
       min-height: 24vw
+    }
+
+    .myselect {
+      padding-bottom: 5px;
     }
 
     .dflex {
