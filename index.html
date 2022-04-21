@@ -27,13 +27,15 @@
     </center>
     <section class="section">
       <center class="myselect">
-        <select class="select" v-model="selectedBase">
-          <option value=-1 >Select Base...</option>
-          <option value=0>Supply Base Central</option>
-          <option value=1>Supply Base East</option>
-          <option value=2>Supply Base North</option>
-          <option value=3>Supply Base West</option>
-        </select>
+        <div class="select is-large">
+          <select class="select" v-model="selectedBase">
+            <option value=-1>Select Base...</option>
+            <option value=0>Supply Base Central</option>
+            <option value=1>Supply Base East</option>
+            <option value=2>Supply Base North</option>
+            <option value=3>Supply Base West</option>
+          </select>
+        </div>
       </center>
   <div class="grid-container">
     <center v-for="job in jobList">
